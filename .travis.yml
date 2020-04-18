@@ -1,0 +1,6 @@
+language: cpp
+services:
+  - docker
+script:
+  - docker build -t aphw2 .
+  - docker run --rm -it aphw2 
