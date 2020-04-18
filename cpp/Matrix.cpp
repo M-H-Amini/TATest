@@ -121,32 +121,6 @@ Matrix Matrix::T()
     return Matrix(Data);
 }
 
-double Matrix::det()
-{
-    if( size[0] != size[1] )
-    {
-        std::cout<<"det: non square matrix! "<<std::endl;
-        return 0;
-    }
-    if( size[0] == 1 )                   //for 1*1 matrix.
-        return this->data[0][0];
-
-    if(size[0] == 2)                     //for 2*2 matrix.
-        return ( data[0][0] * data[1][1] ) - ( data[0][1] * data[1][0] );
-
-    size_t i{1};                                //i shows ru kodum satr bast midim!
-    Matrix m = this->delRow(i);
-    double sumDet{};
-    double tempDet{};
-    for (size_t j = 0; j < size[1]; j++)
-    {
-        Matrix m2 = m.myDelCol(j+1);
-        tempDet = m2.det();
-        sumDet += data[i-1][j] * tempDet * pow(-1, i+j+1);
-    }
-    return sumDet;
-}
-
 Matrix Matrix::inv()
 {
     std::vector<std::vector<double>> Data;
